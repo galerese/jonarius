@@ -4,7 +4,7 @@ FROM node:16-bullseye as build
 WORKDIR /app
 COPY package* ./
 
-RUN npm ci
+RUN npm ci --no-audit --prefer-offline --omit=dev
 RUN npx browserslist@latest --update-db
 
 COPY public ./public
