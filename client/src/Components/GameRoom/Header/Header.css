@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.header{
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* width: 100%; */
+    background-color: rgba(0,0,0,0.6);
+    font-family: 'Roboto', sans-serif;
+}
+
+strong {
+    font-weight: 1000;
+}
+
+.header-content-left .logo{
+    color: aliceblue;
+    padding-left:40px;
+    padding-right: 40px;
+    white-space: nowrap;
+}
+
+.header-content-left{
+    display: flex;
+    flex-direction: row;
+}
+
+.header-content-right{
+    display: flex;
+    flex-direction: row;
+}
+
+.header-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 5px;
+    margin-right: 100px;
+    transition: 0.5s;
+    white-space: nowrap;
+    
+}
+
+.header-links > p {
+    cursor: pointer;
+    margin-left: 15px;
+    text-decoration: none;
+    margin-left: 4vw;
+    font-size: 1.5vw;
+    font-weight: 200;
+    color: rgb(255, 255, 255);
+}
+
+.header-links > p:hover{
+    background-color: rgb(77, 77, 77);
+    transition: 0.5s;
+}
+
+.header-links > p:active {
+    transform: scale(0.8);
+    transition: 0.2s;
+
+}

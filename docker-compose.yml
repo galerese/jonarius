@@ -1,0 +1,34 @@
+version: '3'
+
+networks: 
+  web:
+
+services:
+
+  client:
+    build: 
+      args:
+        - REACT_APP_API_SOCKET_PATH=/api/socket.io
+        - REACT_APP_API_ADDRESS=/
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    ports:
+      - 80:80
+    networks: 
+      - web
+    depends_on: 
+      - server
+  
+  server:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: server
+    environment:
+      SOCKET_IO_PATH: /api/socket.io
+    networks: 
+      - web
+    ports: 
+      - 5000:5000
+                

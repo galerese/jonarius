@@ -1,0 +1,40 @@
+.gameRoom .gameBoard-container {
+  grid-area: gameboard;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  position: relative;
+}
+.gameRoom .gameBoard {
+
+  user-select: none !important;
+    display: grid;
+    height: auto;
+    width: 100%;
+    margin: 10px;
+    grid-template: 
+    "header" auto
+    "table" auto
+    "hand" auto
+    / 1fr;
+    gap: 4px;
+    --gap: 4px;
+    position: relative;
+  
+    /* flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+  }
+
+  .gameRoom .gameBoard.iAmPickingPrompt {
+    grid-template: 
+    "input-prompt" auto
+    "hand" auto
+    / 1fr;
+  }
+  /* esconde a mesa e o header na hora de escolher prompt */
+  .gameRoom .gameBoard.iAmPickingPrompt .gameBoardHeader,
+  .gameRoom .gameBoard.iAmPickingPrompt .dealer-table
+   {
+    display: none;
+  }

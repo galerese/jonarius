@@ -1,0 +1,179 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+.test {
+  display: none;
+  position: fixed;
+  background-color: #000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 999999;
+  border: 5px solid #fff;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 30px;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #275d47ca;
+  border-radius: 0;
+}
+
+.mobile-orientation-notice-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("../assets/background/bg_helio.png");
+    background-color: #1f3324;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .mobile-orientation-notice-overlay h1 {
+  
+    font-weight: 100;
+    font-size: 2.0em;
+    text-justify: center;
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Luckiest Guy';
+    color: rgb(255, 255, 255);
+    text-shadow: -4px 3px 2px rgb(0, 0, 0);
+  }
+
+  .mobile-orientation-notice-overlay img {
+    width: 10%;
+    margin-top: 5%;
+    filter: invert(100%) drop-shadow(-4px 3px 2px rgb(0, 0, 0));
+  }
+  /* Sugerir ao usuario que ele use o device em "landscape" */
+  @media screen and (orientation:portrait) {
+    .gameRoom, .joinOuterContainer {
+      display: none !important
+    }
+  }
+  
+  /* Sugerir ao usuario que ele use o device em "landscape" */
+  @media screen and (orientation:landscape) {
+    .mobile-orientation-notice-overlay {
+        display: none
+    }
+  }
+  
+
+/*
+ Popups :)
+*/
+.popup-container{
+  display: none;
+  align-items: center;
+  justify-items: center;
+  margin:0;
+  padding:0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 30000;
+  width: 100%;
+  height: 100%;
+  background-color:#292929ce;
+  font-family: 'Montserrat', sans-serif;
+  transition: 0.5s;
+  justify-content: center;
+  align-content: center;
+  white-space: normal;
+
+}
+/* ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 20px;
+} */
+
+.popup-content {
+  overflow-y: auto;
+  display: flex;
+  padding: 1vw;
+  position: fixed;
+  width: 70vw;
+  height: 70vh;
+  flex-flow: column nowrap;
+  background-color: #fff;
+  color: #000;
+  transition: 0.5s;
+
+}
+
+.popup-content p{
+margin: 0.8vw 0;
+}
+
+.popup-content h1 {
+margin: 1vw 0;
+}
+
+.popup-content h2{
+margin: 2vw 0 1vw 0;
+}
+
+.popup-container.hide {
+  display: none;
+  transition: 0.5s;
+
+}
+
+.popup-container.show {
+  display: flex;
+  transition: 0.5s;
+
+}
+
+.popup-button{
+  cursor: pointer;
+  background-color: #275d47;
+  color: #fff;
+  font-size: 2vw;
+  font-weight: 100;
+  width: 5vw;
+  height: auto;
+  margin-top: 20px;
+  align-self: center;
+  border: 0;
+  padding: 1vw !important;
+  box-sizing: content-box;
+}
+
+.popup-button:hover { 
+border-bottom: 2px solid #1e4938;
+}
