@@ -5,3 +5,4 @@ Procfile
 .env
 .env_template
 .env copy 2
+*.log
