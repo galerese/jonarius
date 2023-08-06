@@ -140,7 +140,7 @@ io.on('connect', (socket) => {
   // MÉTODO GAMESTART - USUÁRIO COMEÇANDO UM JOGO - PRECISA SER HOST
   //
 
-  socket.on('changeDeck', (isDeckDixit, isDeckEuro, isDeckNude, isDeckPeq) => {
+  socket.on('changeDeck', (deck) => {
     let userRoom = Rooms.getRoomOfUser(user)
     if (!userRoom) {
       console.warn("Usuário [%s] tentando escolher deck sem estar em um jogo!", user.id)
@@ -152,7 +152,7 @@ io.on('connect', (socket) => {
 
     }
 
-    Rooms.setDeck(isDeckDixit, isDeckEuro, isDeckNude, isDeckPeq, userRoom)
+    Rooms.toggleDeck(deck, userRoom)
     Rooms.emitRoomDataForAll(userRoom, io)
 
   })
