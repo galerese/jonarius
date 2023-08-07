@@ -19,12 +19,13 @@ services:
     container_name: client
     ports:
       - 80:80
+      - 443:443
     networks: 
       - web
     depends_on: 
       - server
     volumes:
-      - /etc/letsencrypt/live/jonarius.galere.se/:/usr/local/nginx/conf/ssl:ro
+      - /etc/letsencrypt/:/usr/local/nginx/conf/ssl:ro
   
   server:
     restart: on-failure
