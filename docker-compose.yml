@@ -29,8 +29,7 @@ services:
     container_name: server
     environment:
       SOCKET_IO_PATH: /api/socket.io
+      CLIENT_HTML_INDEX_URL: http://client:8080/
     networks: 
       - web
-    ports: 
-      - 5000:5000
                 
