@@ -3,6 +3,9 @@ version: '3'
 networks: 
   web:
 
+volumes:
+  server:
+
 services:
 
   client:
@@ -20,6 +23,8 @@ services:
       - web
     depends_on: 
       - server
+    volumes:
+      - /etc/letsencrypt/live/jonarius.galere.se/:/usr/local/nginx/conf/ssl:ro
   
   server:
     restart: on-failure
@@ -29,7 +34,11 @@ services:
     container_name: server
     environment:
       SOCKET_IO_PATH: /api/socket.io
+      DATABASE_FILE: /var/lib/data/database.db
+      SESSION_STORE_PATH: /var/lib/data/sessions
       CLIENT_HTML_INDEX_URL: http://client:8080/
     networks: 
       - web
+    volumes:
+      - server:/var/lib/data/:rw
                 
