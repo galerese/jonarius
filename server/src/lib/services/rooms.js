@@ -7,7 +7,7 @@ const users = require("./users");
 
 
   // This will contain all currently existing rooms
-const rooms = [];
+let rooms = [];
 
 module.exports = class Rooms {
 
@@ -63,8 +63,11 @@ module.exports = class Rooms {
   }
   
   static getRooms = () => {
-    console.debug("Buscando todas as salas :)")
     return rooms;
+  }
+
+  static setRooms = (r) => {
+    rooms = r || []
   }
   
   // Eu pedro mudei o conceito findIndex(user) para indexOf porque dava erro.
@@ -518,7 +521,7 @@ module.exports = class Rooms {
     const userIndex = userRoom.players.indexOf(player)
     userRoom.players.splice(userIndex, 1)
     console.log('Agora temos [%s] usuários na sala', userRoom.players.length)
-    if (player.user == userRoom.host){
+    if (player.user.id == userRoom.host.id){
       if(userRoom.players.length > 1){
         userRoom.host = userRoom.players[0].user
         console.log('new host is: [%s]', userRoom.host)

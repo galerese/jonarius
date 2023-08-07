@@ -1,7 +1,11 @@
 require('./setup-logging')
 
 const { io, app, server } = require('./ioserver')
+const Utils = require('./lib/utils');
 
+const databaseFile = process.env.DATABASE_FILE || 'test.bd'
+Utils.loadDatabaseFromFile(databaseFile)
+Utils.persistDatabasePeriodically(databaseFile)
 
 const Users = require('./lib/services/users');
 const Rooms = require('./lib/services/rooms');
@@ -209,7 +213,7 @@ io.on('connect', (socket) => {
       return callback("Você precisa estar em um jogo para escolher o prompt!")
     }
     //
-    else if (userRoom.players[userRoom.currentPlayerIndex].user != user) {
+    else if (userRoom.players[userRoom.currentPlayerIndex].user.id != user.id) {
       console.warn("Usuário [%s] tentando escolher o prompt [%s] mas não é a vez dele!", user.name, prompt)
       return callback("Não é a sua vez de escolher uma frase!")
     }
@@ -267,7 +271,7 @@ io.on('connect', (socket) => {
       return callback("Você precisa estar em um jogo para escolher uma carta!")
     }
 
-    else if (userRoom.players[userRoom.currentPlayerIndex].user == user) {
+    else if (userRoom.players[userRoom.currentPlayerIndex].user.id == user.id) {
       console.warn("Jogador [%s] tentando votar na carta [%s] no turno de Prompt dele!", user.name, card)
       return callback("Nesse turno você não vota!")
     }

@@ -1,11 +1,11 @@
 // Esse módulo representa um usuário e suas informações
 module.exports = class User {
 
-    constructor({id, name}){
-        this.createdAt = new Date()
+    constructor({createdAt, socketIds, id, name}){
+        this.createdAt = createdAt || new Date()
         this.id = id
         this.name = name
-        this.socketIds = []
+        this.socketIds = socketIds || []
     }
 
     hasSocket(id) {

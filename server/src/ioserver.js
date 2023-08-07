@@ -5,9 +5,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const fs = require('fs');
+const session = require("express-session")
+const FileStore = require('session-file-store')(session);
 
 const app = express();
 const server = http.createServer(app)
+
+const sessionStorePath = process.env.SESSION_STORE_PATH || './sessions'
+console.log("Using session store path [%s]", sessionStorePath)
 
 const socketIOPath = process.env.SOCKET_IO_PATH || "/socket.io"
 console.log("Initializing socket server with path [%s]", socketIOPath)
@@ -23,14 +28,21 @@ const io = socketio(server, {
 //
 // Implementação de sessões no socket e no servidor express :)
 //
-const sessionMiddleware = require("express-session")({
+const cookieAge = 12 * 30 * 24 * 60 * 60 // age in seconds
+const sessionMiddleware = session({
   secret: "agentequerboleteyesok123",
   resave: true,
   saveUninitialized: true,
   cookie: {
-    // Cookie expira em um mes :), em millisegundos
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-  }
+    // Cookie expira em um ano :), em millisegundos
+    maxAge: cookieAge * 1000,
+  },
+  store: new FileStore(
+    {
+      path: sessionStorePath,
+      ttl: cookieAge
+    }
+  )
 
 })
 

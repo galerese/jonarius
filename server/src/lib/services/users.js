@@ -1,6 +1,6 @@
 const uuid = require('uuid')
 const User = require('../models/user')
-const users = [];
+let users = [];
 
 module.exports = class Users {
 
@@ -74,8 +74,8 @@ module.exports = class Users {
   }
 
   static getUser = (id) => {
-    console.debug("Buscando usuário com id [%s]", id)
-    console.debug("Usuários disponíveis: ", users)
+    // console.debug("Buscando usuário com id [%s]", id)
+    // console.debug("Usuários disponíveis: ", users)
     return users.find((user) => user.id === id);
   }
   // Pedro diz: acho que essa função tá desatualizada, não funcional.
@@ -85,7 +85,13 @@ module.exports = class Users {
     return users.filter((user) => user.room === room);
   }
 
+  static getUsers = () => {
+    return users
+  }
 
+  static setUsers = (u) => {
+    users = u || []
+  }
 
   static changeUserName = (user, name) => {
     console.log(`Usuário [${user.id}] trocou o nome de [${user.name}] para [${name}]`)

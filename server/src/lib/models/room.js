@@ -1,4 +1,6 @@
+const Users = require('../services/users')
 const RoomPlayer = require('./room_player')
+const User = require('./user')
 
 // Esse módulo representa um jogador uma sala com todas as informações sobre uma 
 // sala e o jogo que está sendo executado :)
@@ -26,30 +28,48 @@ module.exports = class Room {
     ]
 
 
-    constructor({name, hostPlayer}){
-        this.createdAt = new Date()
+    constructor({
+        createdAt,
+        name, 
+        state,
+        players,
+        host,
+        hostPlayer,
+        turn,
+        currentPlayerIndex,
+        prompt,
+        selectedCardCount,
+        results,
+        victory,
+        votingCardsTurn,
+        winner,
+        minimumPlayersToStart,
+        minimumCardsToStart,
+        selectedDecksIds
+    }){
+        this.createdAt = createdAt || new Date()
         this.name = name
         // Uma sala nova sempre começa com WAITING_FOR_PLAYERS
-        this.state = Room.States.WAITING_FOR_PLAYERS 
-        this.players = [new RoomPlayer({user: hostPlayer})]
-        this.host = hostPlayer
-        this.turn = 1
-        this.currentPlayerIndex = 0
-        this.prompt = null
-        this.selectedCardCount = 0
-        this.results = []
-        this.victory = "points-victory"
-        this.votingCardsTurn = []
-        this.winner = []
-        this.minimumPlayersToStart = 2
-        this.minimumCardsToStart = 50
+        this.state = state || Room.States.WAITING_FOR_PLAYERS 
+        this.players = players && players.map(p => new RoomPlayer(p)) || [new RoomPlayer({user: hostPlayer})]
+        this.host = host ? Users.getUser(host.id) : hostPlayer
+        this.turn = turn || 1
+        this.currentPlayerIndex = currentPlayerIndex || 0
+        this.prompt = prompt || null
+        this.selectedCardCount = selectedCardCount || 0
+        this.results = results || []
+        this.victory = victory || "points-victory"
+        this.votingCardsTurn = votingCardsTurn || []
+        this.winner = winner || []
+        this.minimumPlayersToStart = minimumPlayersToStart || 2
+        this.minimumCardsToStart = minimumCardsToStart || 50
 
         // Default possible decks and conditions to win :)
         this.availableDecks = Room.AVAILABLE_DECKS
         this.availableVictoryConditions = Room.POSSIBLE_VICTORY_CONDITIONS
 
         // Id of decks which have been selected so far :)
-        this.selectedDecksIds =[Room.AVAILABLE_DECKS[0].id]
+        this.selectedDecksIds = selectedDecksIds || [Room.AVAILABLE_DECKS[0].id]
 
         // Populates the deck
         this.deck = []
