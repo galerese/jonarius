@@ -1,5 +1,5 @@
 
-import React, {  useContext } from 'react'
+import React, { useContext } from 'react'
 
 import './PlayerList.css'
 import GameContext from '../../GameContext/GameContext'

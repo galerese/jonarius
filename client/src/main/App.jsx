@@ -15,6 +15,7 @@ import RotatePhoneIcon from '../assets/icons/rotate_phone.svg'
 
 import SessionContext from "../Components/SessionContext"
 import DragPreview from '../Components/DragPreview/DragPreview'
+import peqPicture from '../assets/images/peq.png'
 
 
 export default (props) => {   
@@ -102,7 +103,7 @@ export default (props) => {
               "name": "Cartas do Peq",
               "id": "peq",
               "totalCards": 21,
-              "deckPrefix": "Peq"
+              "deckPrefix": "Peq",
             },
             {
               "name": "Cartas de Nudes",

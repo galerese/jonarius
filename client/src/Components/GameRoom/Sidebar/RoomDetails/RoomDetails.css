@@ -2,9 +2,12 @@
     display: flex;
     /* grid-area: roomDetails; */
     color: #fff;
-    padding: 6px;
+    padding: 15px 30px;
     font-weight: 300;
-    background-color: rgba(0,0,0, 0.3);
+    background-color: #a071a777;
+    font-size: 1.5em;
+    border-radius: 10px;
+    align-items: center;
 }
 
 .roomDetails .roomName {
@@ -26,22 +29,23 @@
 .roomDetails .roomControls a {
     text-decoration: none;
     cursor: pointer;
-    background-color: rgba(0,0,0, 0.3);
-    padding: 0.4em;
-    display:inline-block;
+    background-color: #773B75;
+    /* padding: 10px; */
+    min-height: 60px;
+    min-width: 60px;
+    max-height: 60px;
+    max-width: 60px;
+    display: flex;
     position: relative;
     user-select: none;
-    text-transform: uppercase;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px 50%;
+    font-size: 1.2em;
+    transition: background-color 0.4s, border-radius 0.6s;
 }
 
 .roomDetails .roomControls a:hover, .roomDetails .roomControls a:active {
-    background-color: rgba(0,0,0, 0.6);
-}
-
-.roomDetails .roomControls a:focus  {
-    border: 1px solid #900;
-}
-
-.roomDetails .roomControls a:active  {
-    top: 1px;
+    background-color: #4C1E4F;
+    border-radius: 50% 5px;
 }

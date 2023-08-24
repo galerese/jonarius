@@ -22,7 +22,7 @@ module.exports = class Room {
         {name: "Cartas de Dixit",  id:'dixit', totalCards: 257, deckPrefix: 'Dixit'},
     ]
 
-    static POSSIBLE_VICTORY_CONDITIONS = [
+    static POSSIBLE_VICTORY_CONDITIONS = [  
         {name: 'Corrida dos 30 pontos', id: 'points-victory'},
         {name: 'Jogar até o baralho acabar', id: 'deck-victory'},
     ]

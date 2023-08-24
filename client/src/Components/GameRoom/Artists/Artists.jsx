@@ -29,21 +29,26 @@ function  Artists () {
         <div className="background-artists-button popup-container" >
             <div className="Artists-content popup-content">
                     <div className="artist-info">
-                        <img className="artist-foto" src={peqPicture} alt="Peq"/>
-                        <h2 className="artist-name">PEQ</h2>
-                        <div className="artist-description">
-                            Ian Raposo<br/>
-                            Tamo Vivo - Rio de Janeiro<br/>
-                            Produção @_lakermesse<br/>
-                            O cara mais positivo que vc vai conhecer<br/>
-                            Trabalhos disponíveis.</div>
+                        <div id="artist-main">
+                            <div id="artist-avatar">
+                                <img className="artist-foto" src={peqPicture} alt="Peq"/>
+                                <h2 className="artist-name">Peq</h2>
+                            </div>
+                            <div className="artist-description">
+                                Ian Raposo<br/>
+                                Tamo Vivo - Rio de Janeiro<br/>
+                                Produção @_lakermesse<br/>
+                                O cara mais positivo que vc vai conhecer<br/>
+                                Trabalhos disponíveis.
+                            </div>
+                        </div>
                         <a className="artist-instagram" target='_blank' href="https://www.instagram.com/foda.se.o.peq/">@foda.se.o.peq</a>
                     </div>
                     <div className="be-part-info">
                         <div className="be-part-text">Participe também!</div>
 
                     </div>
-                    <button className="popup-button" onClick={(e) => {closeArtists(e)}}>FECHAR</button>
+                    <button className="popup-button" onClick={(e) => {closeArtists(e)}}>Fechar</button>
             </div>       
         </div>           
         </>

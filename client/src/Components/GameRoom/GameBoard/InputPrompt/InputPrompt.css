@@ -62,7 +62,7 @@
 .gamePromptInputBox form input {
   background-color: #0001;
   border: 0;
-  font-family: 'Roboto';
+  font-family: 'Satisfy';
   font-size: 2em;
   padding: 2%;
   width: 100%;
@@ -74,7 +74,7 @@
 .gamePromptInputBox form button {
   margin-top: 3%;
   background-color: #3b6554;
-  font-family: 'Roboto';
+  font-family: 'Satisfy';
   border: 0;
   font-size: 2em;
   font-weight: 300;

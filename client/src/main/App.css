@@ -17,7 +17,7 @@
 }
 
 html, body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Satisfy', sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -35,12 +35,12 @@ html, body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 2px;
 }
 
 
 ::-webkit-scrollbar-thumb {
-  background: #275d47ca;
+  background: #a071a7ca;
   border-radius: 0;
 }
 
@@ -132,19 +132,26 @@ html, body {
   background-color: #fff;
   color: #000;
   transition: 0.5s;
-
+  font-family: 'Satisfy';
+  border-radius: 10px;
 }
 
 .popup-content p{
-margin: 0.8vw 0;
+  margin: 0 0 30px 0;
+  font-size: 1em;
+  font-family: Montserrat;
+  color: #474747;
 }
 
 .popup-content h1 {
-margin: 1vw 0;
+  margin: 0 0 10px 0;
+  font-size: 2.2em;
 }
 
 .popup-content h2{
-margin: 2vw 0 1vw 0;
+  margin: 5px 0 10px 0;
+  font-size: 1.5em;
+  color: #353535;
 }
 
 .popup-container.hide {
@@ -161,19 +168,21 @@ margin: 2vw 0 1vw 0;
 
 .popup-button{
   cursor: pointer;
-  background-color: #275d47;
+  background-color: #a071a7;
   color: #fff;
   font-size: 2vw;
   font-weight: 100;
-  width: 5vw;
   height: auto;
   margin-top: 20px;
   align-self: center;
   border: 0;
-  padding: 1vw !important;
+  padding: 15px;
   box-sizing: content-box;
+  font-family: 'Satisfy';
+  transition: background-color 0.4s;
+  border-radius: 15px;
 }
 
 .popup-button:hover { 
-border-bottom: 2px solid #1e4938;
+  background-color: #773b75
 }

@@ -12,5 +12,6 @@
     padding: 6px;
     justify-content: flex-end;
     height: fit-content;
-    min-height: 100%;
-  }
+    background: #D8C3DC33;
+    font-family: 'Montserrat';
+}

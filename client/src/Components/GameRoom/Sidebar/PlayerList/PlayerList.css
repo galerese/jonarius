@@ -1,20 +1,25 @@
 .gameRoom .sidebar .playerList {
     /* grid-area: playerList; */
-    background-color: rgba(0,0,0, 0.3);
-    max-height: 30vw;
-    min-height: 100px;
+    background-color: #B897BD55;
+    max-height: 300px;
+    min-height: 150px;
+    height: 20vh;
     overflow-y: auto;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 .playerList > table {
     width: 100%;
+    font-size: 1.4em;
+    font-family: 'Montserrat';
 }
 
-.playerList >table tr  {
+.playerList > table tr  {
     background-color: rgba(255, 255, 255, 0.1);
 }
-.playerList >table tr td {
-    padding: 6px;
+.playerList > table tr td {
+    padding: 12px;
 }
 
 .playerList .player.thisIsMe .playerName {
