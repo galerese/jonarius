@@ -59,7 +59,7 @@ const serveIndexWithOpenGraph = async function (req, res) {
 
 
 routes.get("/healthcheck", (req, res) => {
-  res.send({ response: "Server is up and running." }).status(200);
+  res.send({ response: "Server is up and running. :)" }).status(200);
 });
 
 // Vamos renderizar o / com script e não estático, para poder
