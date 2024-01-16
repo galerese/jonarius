@@ -12,7 +12,9 @@
     "dev:start": "nodemon --exec ts-node tests/server.ts --ignore __tests__",
     "dev:test": "cd tests/tasks && npx ts-node client2.ts",
     "dev:db:migrate": "cd tests/ && npx dotenv -e ../.env sequelize db:migrate",
-    "dev:db:migrate:undo": "cd tests/ && npx dotenv -e ../.env sequelize db:migrate:undo"
+    "dev:db:migrate:undo": "cd tests/ && npx dotenv -e ../.env sequelize db:migrate:undo",
+    "test": "jest"
+
   },
   "keywords": [],
   "author": "",
@@ -41,6 +43,7 @@
     "@types/node": "^14.11.1",
     "@types/sequelize": "^4.28.9",
     "dotenv-cli": "^4.0.0",
+    "jest": "^29.6.2",
     "nodemon": "^2.0.4",
     "sequelize-cli": "^6.2.0",
     "ts-node": "^9.0.0",
