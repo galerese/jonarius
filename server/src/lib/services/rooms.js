@@ -256,14 +256,12 @@ module.exports = class Rooms {
     room.players.forEach(player => {
       console.debug("Distribuindo as cartas para o jogador [%s]", player.user.name)
       shuffle(room.deck);
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 6; i++) {
         var randomCard = room.deck[0]
         player.hand.push(randomCard)
         room.deck.splice(0, 1)
       }
-    }
-
-    )
+    })
 
     console.debug("Distribuição de cartas para os jogadores da sala [%s] concluída!", room.name)
   }
