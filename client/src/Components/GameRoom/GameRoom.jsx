@@ -27,7 +27,7 @@ export default (props) => {
 const GameRoom = ({ location }) => {   
 
     const { roomName } = useParams()
-    const {roomData} = useContext(GameContext)
+    const {roomData, lastClosedTurnResults} = useContext(GameContext)
 
     const { session } = useContext(SessionContext)
 
@@ -65,7 +65,11 @@ const GameRoom = ({ location }) => {
         <div className={"gameRoom "+ roomData.state}>
             <Header/>   
             <Sidebar></Sidebar>
-            { roomData.state === "GAME_ENDED" || roomData.state ==="WAITING_FOR_PLAYERS" 
+            { (
+                roomData.state === "GAME_ENDED" 
+                && lastClosedTurnResults == roomData.turn
+                )
+                    || roomData.state === "WAITING_FOR_PLAYERS" 
                 ? <RoomLobby />
                   : <GameBoard/>
             }

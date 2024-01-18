@@ -3,6 +3,7 @@ import './TurnResults.css'
 import GameContext from '../GameContext/GameContext'
 import AllCards from '../../allCards'
 import Card from '../GameBoard/Card/Card'
+import Constants from '../../../Constants'
 
 function TurnResults (props){
     console.log('renderizando Componente TurnResults')
@@ -81,7 +82,11 @@ function TurnResults (props){
         return (
             <React.Fragment>
                 <div className="background-results">
-                    <button className="closeResultsButton" onClick={e => closeResults(e)}>Voltar para partida</button>
+                    <button className="closeResultsButton" onClick={e => closeResults(e)}>{
+                        roomData.state == Constants.RoomStates.GAME_ENDED 
+                            ? "Ver resultado final"
+                            : "Voltar para partida"
+                    }</button>
                     <div className="turnResultsBox">
 
                         <div className="turnPlayerResult">

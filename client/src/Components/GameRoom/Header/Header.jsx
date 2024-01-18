@@ -7,11 +7,11 @@ import Artists from '../Artists/Artists'
 
 
 function Header (props) {
-    const {roomData, setShouldShowTurnResults} = useContext(GameContext)
+    const {roomData, setLastClosedTurnResults} = useContext(GameContext)
 
     const showLastTurnResults = () => {
         console.log("Mostrando resultados do ultimo turno!")
-        setShouldShowTurnResults(true)
+        setLastClosedTurnResults(0)
     }
 
     return(  

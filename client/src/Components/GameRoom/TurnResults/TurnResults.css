@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900');
 
 .closeResultsButton{
-  border: 0;
+  border: 10px #18703d solid;
+  border-width: 0 8px 8px 0;
   text-transform: uppercase;
-  font-size: 0.75em;
-  background-color: rgb(255, 255, 255);
+  font-size: 1.25em;
+  background-color: #ffffffff;
   padding: 1em;
   cursor: pointer;
   position: absolute;
-  right: 6px;
-  top: 6px;
+  top: 5%;
+  right: 5%;
   z-index: 1000;
 }
 
@@ -18,8 +19,9 @@
 }
 
 .closeResultsButton:active {
-  top:7px;
-  right: 5px;
+  top: 5.5%;
+  right: 4.5%;
+  border: 0;
 }
 
 .background-results{
