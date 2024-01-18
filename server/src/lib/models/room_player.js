@@ -14,12 +14,14 @@ module.exports = class RoomPlayer {
         hand,
         mySelectedCard,
         selectedCard,
-        votedCard
+        votedCard,
+        lastRedrawTurn
     }){
         this.user = user instanceof User ? user : Users.getUser(user.id)
         this.score = score || 0
         this.turnScore = turnScore || 0
         this.hand = hand || []
+        this.lastRedrawTurn = lastRedrawTurn || null
         this.mySelectedCard = mySelectedCard || null
         this.selectedCard = selectedCard || null
         this.votedCard = votedCard || null

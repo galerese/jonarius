@@ -45,7 +45,9 @@ module.exports = class Room {
         winner,
         minimumPlayersToStart,
         minimumCardsToStart,
-        selectedDecksIds
+        selectedDecksIds,
+        deck,
+        morto
     }){
         this.createdAt = createdAt || new Date()
         this.name = name
@@ -72,8 +74,8 @@ module.exports = class Room {
         this.selectedDecksIds = selectedDecksIds || [Room.AVAILABLE_DECKS[0].id]
 
         // Populates the deck
-        this.deck = []
-        this.morto = []
+        this.deck = deck || []
+        this.morto = morto || []
 
     }
 

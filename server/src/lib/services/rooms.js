@@ -255,15 +255,21 @@ module.exports = class Rooms {
 
     room.players.forEach(player => {
       console.debug("Distribuindo as cartas para o jogador [%s]", player.user.name)
-      shuffle(room.deck);
-      for (var i = 0; i < 6; i++) {
-        var randomCard = room.deck[0]
-        player.hand.push(randomCard)
-        room.deck.splice(0, 1)
-      }
+      Rooms.shuffleAndDealCardsToPlayer({room, player, count: 6})
     })
 
     console.debug("Distribuição de cartas para os jogadores da sala [%s] concluída!", room.name)
+  }
+
+  // Embaralha o baralho e distribui N cartas para o jogador :)
+  static shuffleAndDealCardsToPlayer = ({room, player, count}) => {
+    // shuffle(room.deck);
+    for (var i = 0; i < count; i++) {
+      var randomCard = room.deck[0]
+      console.log("SELECTED CARD: [%s]", room.deck[0])
+      player.hand.push(randomCard)
+      room.deck.splice(0, 1)
+    }    
   }
 
   // Selecionar o prompt para um usuário da sala
@@ -280,6 +286,43 @@ module.exports = class Rooms {
     room.prompt = prompt
     console.log("Usuário [%s] escolheu o prompt [%s] na mesa [%s], passando para o próximo estado!", user.id, prompt, room.name)
     room.state = Room.States.SELECTING_CARDS
+
+  }
+
+  // Recomprar as cartas para dar mais dinâmica ao jogo :)
+  static redrawCardsForUser = ({ user, callback, room, io }) => {
+    const player = room.getPlayerForUser(user)
+    console.log("Usuário [%s] recomprando cartas na sala [%s], com [%d] carta(s) na mão!", user.id, room.name, player.hand.length)
+
+    if (!(
+        Room.States.PICKING_PROMPT == room.state || 
+        (Room.States.SELECTING_CARDS == room.state && !player.selectedCard)
+    )) {
+      console.log("Usuário [%s] tentando recomprar a mão fora da hora na mesa [%s]", user.id, room.name)
+      return callback("Você só pode recomprar sua mão durante a fase de escolha de frase ou de escolher cartas e você ainda não tiver escolhido!")
+    } 
+
+    if (player.lastRedrawTurn && player.lastRedrawTurn >= room.turn - 1) {
+      console.log("Usuário [%s] tentando recomprar a mão antes de esperar duas rodadas na mesa [%s]", user.id, room.name)
+      return callback("Você só pode recomprar sua mão a cada 2 rodadas!")
+    }
+
+    Rooms.sendSystemMessageToRoom({ io, message: `Ora, ora, ora.. ${user.name} recomprou sua mão!`, userRoom: room })
+
+    // Remove as cartas da mão do jogador
+    const oldPlayerHand = player.hand
+    player.hand = []
+    player.lastRedrawTurn = room.turn
+
+    Rooms.shuffleAndDealCardsToPlayer({player, room, count: oldPlayerHand.length})
+    
+    // Coloca as cartas antigas do jogador no baralho novamente :)
+    for (var card in oldPlayerHand) {
+      room.deck.push(card)
+    }
+    
+    console.log("Nova mão do usuário [%s] na sala [%s] tem [%d] carta(s) e é [%s]", user.id, room.name, player.hand.length, JSON.stringify(player.hand))
+    console.log("O deck da sala [%s] tem [%d] carta(s)", room.name, room.deck.length)
 
   }
 

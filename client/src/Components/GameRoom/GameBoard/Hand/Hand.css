@@ -36,6 +36,20 @@
   content: 'SUA MÃO (você escolhe a carta depois)';
 }
 
+.player-hand-redraw {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  padding: 5px;
+  color: #0009;
+  background-color: #ffffff44;
+  cursor: pointer;
+}
+
+.player-hand-redraw:hover {
+  color: #000;
+}
+
 .player-hand .card-container {
   width: 0;
   height: 100%;

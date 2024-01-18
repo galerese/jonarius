@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './Hand.css'
 import { useState, useEffect } from 'react'
 import Card from '../Card/Card'
@@ -6,6 +6,7 @@ import AllCards from '../../../allCards'
 import { useContext, useMemo } from 'react'
 import GameContext from '../../GameContext/GameContext'
 import Constants from '../../../../Constants'
+import socket from '../../../socket'
 
 
 function Hand () {
@@ -13,6 +14,21 @@ function Hand () {
 
     const { roomData, amICurrentPlayer, myPlayer, currentPlayer } = useContext(GameContext)
     const cardsArray = AllCards()
+    const canRedrawCards = useMemo(() => 
+        roomData 
+            && (
+                roomData.state == Constants.RoomStates.PICKING_PROMPT
+                || (roomData.state == Constants.RoomStates.SELECTING_CARDS && !currentPlayer.selectedCard)
+             ))
+
+    const redrawHand = () => {
+        console.log("Recomprando cartas! :)")
+        socket.emit('redraw', (error) => {
+            if (error) {
+                return alert(error)
+            }            
+        })
+    }
 
     //ENCONTRAR UMA FORMA MAIS EFICIÊNTE DE FAZER ISSO!
     const renderCards = () => {   
@@ -40,6 +56,7 @@ function Hand () {
     return(
         <React.Fragment>
         <div className={"player-hand " + (amICurrentPlayer && roomData.state == Constants.RoomStates.PICKING_PROMPT ? 'iAmPickingPrompt' : '') }>
+            <a onClick={redrawHand} className={`player-hand-redraw ${canRedrawCards ? 'enabled' : 'disabled'}`}>RECOMPRAR MÃO</a>
                 {renderCards()}
         </div>            
         </React.Fragment>

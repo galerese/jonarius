@@ -231,6 +231,27 @@ io.on('connect', (socket) => {
     //callback(null, Rooms.getRoomDataForUser({user, room: userRoom}))
   })
 
+
+  //
+  // MÉTODO REDRAW - USUÁRIO RECOMPRA AS CARTAS :)
+  //
+
+  // Quando o jogador escolhe re-comprar suas cartas, pra dar mais dinamica ao jogo :)
+  socket.on('redraw', (callback) => {
+    // O jogador está em um jogo?
+    let userRoom = Rooms.getRoomOfUser(user)
+    if (!userRoom) {
+      console.warn("Usuário [%s] tentando recomprar cartas [%s] sem estar em um jogo!", user.id)
+      return callback("Você precisa estar em um jogo para recomprar cartas!")
+    } 
+
+    Rooms.redrawCardsForUser({ user, room: userRoom, io, callback })
+
+    Rooms.emitRoomDataForAll(userRoom, io)
+    //CALLBACK COM PROBLEMA
+    //callback(null, Rooms.getRoomDataForUser({user, room: userRoom}))
+  })
+
   //
   // MÉTODO SELECTCARD - USUÁRIOS ESCOLHEM UMA CARTA :)
   //
