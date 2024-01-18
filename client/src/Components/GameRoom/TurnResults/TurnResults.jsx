@@ -6,12 +6,12 @@ import Card from '../GameBoard/Card/Card'
 
 function TurnResults (props){
     console.log('renderizando Componente TurnResults')
-    const {roomData, setShouldShowTurnResults} = useContext(GameContext)
+    const {roomData, setLastClosedTurnResults} = useContext(GameContext)
     const cardsArray = AllCards()
 
     const closeResults = e => {
         console.log("Fechando tela de resultados!")
-        setShouldShowTurnResults(false)
+        setLastClosedTurnResults(roomData.turn)
     }
 
     const renderOtherPlayersResults = () =>{

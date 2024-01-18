@@ -61,15 +61,18 @@ export const GameContextProvider = ({children}) => {
     //
 
     var [shouldShowTurnResults, setShouldShowTurnResults] = useState(false)
+    var [lastClosedTurnResults, setLastClosedTurnResults] = useState(0)
 
     // Vamos escutar para exibir os resultados quando o jogo passar para a fase
     // de "PICKING_PROMPT", ou seja, acabr um turno :)
     useEffect(() => {
-        if (roomData && roomData.state == Constants.RoomStates.PICKING_PROMPT && roomData.turn > 1) {
+        if (roomData && roomData.state == Constants.RoomStates.PICKING_PROMPT && roomData.turn > 1 && lastClosedTurnResults != roomData.turn) {
             console.log("Mostrando resultados porque o turno mudou e estamos no PICKING_PROMPT!")
             setShouldShowTurnResults(true)
+        } else {
+            setShouldShowTurnResults(false)
         }
-    }, [roomData])
+    }, [roomData, lastClosedTurnResults])
 
     //
     // Colocar os objetos a disposicao do GameContext
@@ -85,7 +88,8 @@ export const GameContextProvider = ({children}) => {
         amIHost ,
         myVotedCard,
         shouldShowTurnResults,
-        setShouldShowTurnResults
+        setShouldShowTurnResults,
+        setLastClosedTurnResults
     }
 
     return <GameContext.Provider value={context}>{children}</GameContext.Provider>
