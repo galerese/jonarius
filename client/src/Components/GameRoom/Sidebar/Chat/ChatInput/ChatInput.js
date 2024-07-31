@@ -15,7 +15,7 @@
                 value={message}
                 onChange={(event) => setMessage(event.target.value)} 
                 onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null} />
-            <button className="sendButton" onClick={(event) => sendMessage(event)}>Lança</button>
+            <button className="sendButton" onClick={(event) => sendMessage(event)}><i class="fa fa-paper-plane"></i></button>
         </div>
     );
     

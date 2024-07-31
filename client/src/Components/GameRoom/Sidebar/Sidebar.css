@@ -6,8 +6,9 @@
     gap: 4px;
     --gap: 4px;
     flex-direction: column;
-    height: 100%;
+    height: calc(100% - 12px);
     overflow: hidden;
+    margin-top: 8px;
     /* grid-template: 
     "roomDetails" 60px
     "." 4px

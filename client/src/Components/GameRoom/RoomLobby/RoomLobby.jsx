@@ -4,13 +4,29 @@ import { socket } from '../../socket'
 import GameContext from '../GameContext/GameContext'
 import StartButton from './StartButton/StartButton'
 import SessionContext from "../../SessionContext"
-import { Redirect } from 'react-router'
-import DeckSelector from './DeckSelector/DeckSelector'
 import loadingImg from '../../../assets/images/loadingImg'
 import snadesImg from '../../../assets/images/snades'
+import PeqImage from '../../../assets/images/peq'
+import NudesImage from '../../../assets/images/nudes'
+import EuroImage from '../../../assets/images/museu'
+import DixitImage from '../../../assets/images/dixit'
+import CorridaImage from '../../../assets/images/corrida'
+import RunoutImage from '../../../assets/images/runout'
+
+
+const deckImages = {
+    "peq": PeqImage,
+    "nudes": NudesImage,
+    "euro": EuroImage,
+    "dixit": DixitImage
+}
+
+const vicImages = {
+    "points-victory": CorridaImage,
+    "deck-victory": RunoutImage
+}
 
 function RoomLobby() {
-
     console.log('renderizando Componente RoomLobby')
     const {roomData, amIHost } = useContext(GameContext)
 
@@ -36,7 +52,6 @@ function RoomLobby() {
         return roomData 
             && roomData.minimumPlayersToStart <= roomData.players.length
             && roomData.minimumCardsToStart <= numberOfCards
-        
     })
 
     // Herdar valores do roomdata, que é sempre a fonte de verdede :)
@@ -44,24 +59,6 @@ function RoomLobby() {
         setSelectedDecks(roomData.selectedDecksIds)
         setSelectedVictory(roomData.victory)
     }, [roomData])
-
-    // function renderIncommingPlayer() {
-    //     return roomData.players.map((player, index) => {
-    //         if (roomData.host.name == player.name) return (<h2 key={index}>{player.name} (Líder da presepada)</h2>)
-    //         return (
-    //             <h2 key={index}>{player.name}</h2>
-    //         )
-    //     })
-    // }
-    const quitRoom = () => {
-        socket.emit('quitRoom', (quit) => {
-            if (quit) {
-                alert(quit)
-                window.location.replace("/");
-                console.log('Saindo da sala')
-            }
-        })
-    }
 
     const toggleDeck = (deck) => {
         console.log("Configurando o deck:", deck)
@@ -138,29 +135,39 @@ function RoomLobby() {
             <div id="lobby-settings">
                 <div id="build-deck">
                     <h2>Monte o seu Baralho!</h2>
-                    {
-                        // Aqui montamos o HTML para cada DECK :)
-                        availableDecks.map(deck =>
-                            <button className={"deck-input " + (selectedDecksIds.indexOf(deck.id) != -1 ? "deck-selected" : "")  }
-                                onClick={(e) => { toggleDeck(deck)   }}
-                            >
-                                <i className='fas fa-check'></i>
-                                <h3>{deck.name}</h3>
-                            </button>)
-                    }
+                    <div id="build-deck-options">
+                        {
+                            // Aqui montamos o HTML para cada DECK :)
+                            availableDecks.map(deck =>
+                                <button className={"deck-input " + (selectedDecksIds.indexOf(deck.id) != -1 ? "deck-selected" : "")  }
+                                    onClick={(e) => { toggleDeck(deck)   }}
+                                >
+                                    <div className='deck-view'>
+                                        <img src={deckImages[deck.id]} alt={deck.deckPrefix} />
+                                        <i className='fas fa-check'></i>
+                                    </div>
+                                    <h3>{deck.name}</h3>
+                                </button>)
+                        }
+                    </div>
                     <div className={"total-cartas " + (numberOfCards > 50 ? 'total-ready' : '')}>{numberOfCards} cartas</div>
                 </div>
                 <div id="victory-conditions">
                     <h2>Condições de vitória</h2>
+                    <div id="victory-options">
                     {
                         // Aqui montamos o HTML para cada DECK :)
                         availableVictoryConditions.map(victoryCondition =>
                             <button className={"victory-input " + (victoryCondition.id == selectedVictory ? "victory-selected" : "")}
                                 onClick={(e) => { setVictory(victoryCondition.id)   }}>
-                                <i className='fas fa-check'></i>
+                                <div className='victory-view'>
+                                    <img src={vicImages[victoryCondition.id]} alt="" />
+                                    <i className='fas fa-check'></i>
+                                </div>
                                 <h3>{victoryCondition.name}</h3>
                                 </button>)
                     }
+                    </div>
                 </div>
             </div>
         </>
@@ -170,30 +177,40 @@ function RoomLobby() {
             <div id="lobby-settings">
                 <div id="build-deck">
                     <h2>Baralho da Partida!</h2>
-                    {
-                        // Aqui montamos o HTML para cada DECK :)
-                        availableDecks
-                            .filter(deck => selectedDecksIds.indexOf(deck.id) != -1)
-                            .map(deck =>
-                            <div className={"deck-input deck-selected" }>
-                                <i className='fas fa-check'></i>
-                                <h3>{deck.name}</h3>
-                            </div>)
-                    }
+                    <div id="build-deck-options">
+                        {
+                            // Aqui montamos o HTML para cada DECK :)
+                            availableDecks
+                                .filter(deck => selectedDecksIds.indexOf(deck.id) != -1)
+                                .map(deck =>
+                                <div className={"deck-input deck-selected" }>
+                                    <div className='deck-view'>
+                                        <img src={deckImages[deck.id]} alt={deck.deckPrefix} />
+                                        <i className='fas fa-check'></i>
+                                    </div>
+                                    <h3>{deck.name}</h3>
+                                </div>)
+                        }
+                    </div>
                     <div className={"total-cartas " + (numberOfCards > 50 ? 'total-ready' : '')}>{numberOfCards} cartas</div>
                 </div>
                 <div id="victory-conditions">
                     <h2>Condições de vitória</h2>
-                    {
-                        // Aqui montamos o HTML para cada DECK :)
-                        availableVictoryConditions
-                        .filter(victoryCondition => victoryCondition.id == selectedVictory)
-                        .map(victoryCondition =>
-                            <div className={"victory-input " + (victoryCondition.id == selectedVictory ? "victory-selected" : "")}>
-                                <i className='fas fa-check'></i>
-                                <h3>{victoryCondition.name}</h3>
-                                </div>)
-                    }
+                    <div id="victory-options">
+                        {
+                            // Aqui montamos o HTML para cada DECK :)
+                            availableVictoryConditions
+                            .filter(victoryCondition => victoryCondition.id == selectedVictory)
+                            .map(victoryCondition =>
+                                <div className={"victory-input " + (victoryCondition.id == selectedVictory ? "victory-selected" : "")}>
+                                    <div className='victory-view'>
+                                        <img src={vicImages[victoryCondition.id]} alt="" />
+                                        <i className='fas fa-check'></i>
+                                    </div>
+                                    <h3>{victoryCondition.name}</h3>
+                                    </div>)
+                        }
+                    </div>
                 </div>
             </div>
         </>

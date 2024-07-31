@@ -1,30 +1,36 @@
 .chatMessage {
   font-size: 0.9em;
   opacity: 1;
+  margin-bottom: 7px;
 }
 
 .chatMessage > * {
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .chatMessage .messageText {
-  background-color: blanchedalmond;;
-  padding: 6px;
-  border-radius: 4px;
+  background-color: blanchedalmond;
+  padding: 10px;
+  border-radius: 20px 20px 20px 0px;
   display: inline-block;
   box-sizing: border-box;
+  max-width: 80%;
+  line-break: anywhere;
+  text-align: left;
+  
 }
 
 /* Mensagens do systema */
 .chatMessage.systemMessage .messageText {
-  background-color: #668a76cc;
+  background-color: #668a76;
   color: #fff;
 }
 
 /* Minhas proprias mensagens */
 .chatMessage.myMessage .messageText {
-  background-color: #4081c3cc;
+  background-color: #773b75;
   color: #fff;
+  border-radius: 20px 20px 0px 20px;
 }
 .chatMessage.myMessage {
   text-align: right;
@@ -35,7 +41,7 @@
 
 /*  Mensagens de outros usuarios :) */
 .chatMessage.otherMessage .messageText {
-  background-color: #a2a2a2cc;
+  background-color: #a071a7;
   color: #fff;
 }
 
@@ -45,7 +51,7 @@
 }
 
 .chatMessage .userName {
-  color: #fff6;
+  color: #222;
   font-size: 0.8em;
   padding: 0 4px 4px 4px;
 }

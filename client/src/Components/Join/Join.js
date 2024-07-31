@@ -1,12 +1,8 @@
 import React, { useState, useContext, useMemo, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import './Join.css'
 import { socket } from "../socket";
 import SessionContext from '../SessionContext'
 import { Redirect, useLocation } from "react-router";
-import { isMobile } from 'react-device-detect';
-import LoadingImg from '../../assets/images/loadingImg'
-import snadesImg from "../../assets/images/snades";
 
 const Join = () => {
 
@@ -100,8 +96,7 @@ const Join = () => {
     const renderContent = () => {
         return <div className="joinOuterContainer">
             <div className="joinInnerContainer">
-                <div className="wordartblues"><span className="text">Jonarius</span></div>
-                <h1 className="heading">Vem escolher cartinha</h1>
+                <div className="wordartblues"><span className="text">Jonarius!</span></div>
                 <form onSubmit={event => EnterRoom(event)}>
                     <div><input autoFocus placeholder="Escreve um apelido maroto..." className="joinInput mt-20" type="text" onChange={(event) => setName(event.target.value)} autocorrect="off" autocapitalize="none" /></div>
                     <div><input placeholder="Qual o nome da sala?" className="joinInput mt-20" type="text" value={room} onChange={(event) => setRoom(event.target.value)} autocorrect="off" autocapitalize="none" /></div>

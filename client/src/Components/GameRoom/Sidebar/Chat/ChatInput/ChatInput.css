@@ -1,18 +1,19 @@
 .chat-form {
   display: flex;
-  border-top: 4px solid rgba(255,255,255,0.1);
+  justify-content: space-between;
+  margin-top: 15px;
 }
   
 .chat-form .input {
   border: none;
-  color: #fff;
-  border-radius: 0;
-  padding: 4%;
-  width: 80%;
+  color: #222;
+  border-radius: 30px;
+  padding: 3px 10px;
+  width: 100%;
   font-size: 1em;
   font-weight: 300;
-  box-sizing: content-box;
-  background-color: rgba(0,0,0,0.5)
+  font-size: 1.1em;
+  background-color: #EDEDED;
 }
   
 .chat-form input:focus, textarea:focus, select:focus{
@@ -21,14 +22,23 @@
   
 .chat-form .sendButton {
   color: #fff !important;
-  text-transform: uppercase;
   text-decoration: none;
-  background: #275d47;
-  padding: 10px;
+  background-color: #a071a7;
   display: inline-block;
   border: none;
-  width: 20%;
-  box-sizing: content-box;
+  min-width: 60px;
+  max-width: 60px;
+  min-height: 60px;
+  max-height: 60px;
+  font-size: 1.6em;
+  border-radius: 50%;
+  transition: background-color 0.4s;
+  cursor: pointer;
+  margin-left: 10px
+}
+
+.chat-form .sendButton:hover {
+  background-color: #773b75;
 }
 
 .chat-form.hide {

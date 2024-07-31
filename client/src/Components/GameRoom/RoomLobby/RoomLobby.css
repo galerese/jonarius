@@ -2,14 +2,15 @@
 
 .gameRoom .roomLobby {
   grid-area: gameboard;
-  margin: 6px 0 6px 6px;
+  margin: 14px 0 6px 6px;
   position: relative;
-  background-color:rgba(0,0,0, 0.3);
   font-family: 'Montserrat', sans-serif;
   padding: 1em;
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
+  /* height: calc(100% - 100px); */
+  
   /* flex-direction: column;
   justify-content: center;
   align-items: center; */
@@ -27,24 +28,26 @@
 
 #lobby-settings{
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: column;
+  width: 100%;
 }
 
 #wrapper h1 {
-  margin-top: 0.7em;
-  margin-bottom: 1.5em;
+  margin-top: 20px;
+  margin-bottom: 40px;
   font-weight: 500;
-  font-size: 2.5vw;
+  font-size: 3.7em;
   text-align: center;;
   color:#fff;
-  text-decoration: underline;
+  font-family: 'Satisfy';
 }
 
 #wrapper h2{
   margin: 10px;
   font-weight: 500;
-  font-size: 3vw;
-  color:#fff;
+  font-size: 2.7em;
+  color: #CCC;
+  font-family: 'Satisfy';
 }
 
 .total-cartas{
@@ -52,6 +55,8 @@
   justify-self: center;
   margin: 10px;
   color: red;
+  font-size: 1.8em;
+  font-family: 'Satisfy';
 }
 
 .total-ready {
@@ -93,31 +98,70 @@
 }
 
 #victory-conditions, #build-deck {
-  background-color: rgba(0,0,0,0.25);
-  width: 25vw;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   padding: 1vh;
-  margin: 0.2em;
+  margin: 5px;
   font-size: small;
   border-right-style: solid;
-  border-right: 10px
+  border-right: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+#build-deck-options, #victory-options {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  overflow: auto;
+  height: 255px;
+}
+
+#build-deck-options h3, #victory-options h3 {
+  margin-top: 25px;
 }
 
 .deck-input, .victory-input{
   /* background-color: rgba(0,0,0,0.3); */
-  background-color: #fff;
+  display: flex;
+  background-color: transparent;
   color: #000;
+  flex-direction: column;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  justify-content: center;
   font-weight: 300;
   padding: 10px;
-  display: flex;
-  flex-flow: row nowrap;
   margin: 2px 0;
-  cursor: pointer;
   opacity: 0.7;
-  user-select: none;
   border: 0;
-  font-family: 'Montserrat', sans-serif;
+  width: 250px;
+  height: 250px;
+
+}
+
+.deck-view, .victory-view {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+}
+
+.deck-view img, .victory-view img {
+  display: flex;
+  position: absolute;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  z-index: -1;
+  object-fit: cover;
 }
 
 .deck-input:hover, .victory-input:hover {
@@ -131,15 +175,27 @@
 
 .deck-input i.fas, .victory-input i.fas {
   visibility: hidden;
-  margin-right: 0.5em;
+  /* margin-right: 0.5em; */
 
-  font-size: 18px;
+  font-size: 2.3em;
   font-weight: normal;
 }
 
 .deck-input.deck-selected i.fas, .victory-input.victory-selected i.fas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   visibility: visible;
-  color: #759081;
+  color: #ddd;
+  background: #B897BD;
+  background: -moz-radial-gradient(circle, #B897BD 0%, #D8C3DC66 50%, rgba(124,207,111,0) 67%);
+  background: -webkit-radial-gradient(circle, #B897BD 0%, #D8C3DC66 50%, rgba(124,207,111,0) 67%);
+  background: radial-gradient(circle, #B897BD 0%, #D8C3DC66 50%, rgba(124,207,111,0) 67%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#7ccf6f",endColorstr="#7ccf6f",GradientType=1);
+  width: 100%;
+  height: calc(100% + 14px);
+  /* margin-left: 10px; */
+  border-radius: 50%;
 }
 
 .deck-input h3, .victory-input h3 {
